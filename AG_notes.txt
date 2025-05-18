@@ -1,0 +1,35 @@
+There's a bunch of data but there is a Readme available that explains the data set up.
+
+Here are some notes that I found while working:
+
+    1. Tagged data is very limited -- only 25 artists have tags, from a total of 17,633 artists. I was hoping we could use tags to better 
+        recommendations, but with such limits, might be hard.
+    2. Can join user listens to artist data tagID field
+
+When creating the user/item matrix, I limited to users & artists with >= 20 listens. This took the data to 1,847 users & 804 artists (down from 
+1,892 & 17,632).
+
+
+I saved a preprocessed dataset with the matrix described above in Data/preprocessed_user_item_matrix.csv ; please feel free to update / replace
+as you see fit, if 20 listens per user & artists is too conservative / ambitious.
+
+
+When modeling, NUTS was too computationally intensive so for the time being I took a smaller sample to work with. Sample was picked with
+a 100 artist x 100 users subset randomly using numpy. The model was built with 3 latent factors, and 300 tune + 300 draws. Again, can / should
+change this for final implementation work, but for the time being should work (?)
+
+I also learnt the features should probably be scaled, so I did this before running the model. Also did a 80/20 split for train and test.
+
+In an ideal world, we'd have timestamps in the data telling us when a user listened to what, so we could do a temporal train/test split. This
+would allow us to use actual data say up until Jan 2025, and test recommendations on what were listened to from Feb - May. 
+However, no timestamps in this data so the trian test split is random. Should still work imo. 
+
+In my model, I've included a parameter in the sample for cores=4 -- this is specific to each machine, so if you have more / less cores available,
+feel free to change as needed. Code below can tell you number of cores available for use. I kept it to 4 since I was trying 4 chains
+
+import os
+print("Logical CPU cores:", os.cpu_count())
+
+
+I got Test MSE: 0.996, MAE: 0.373, which indicates my sample probably has outliers which is why MSE is higher (scaled metrics), but MAE shows
+good predictive value.
