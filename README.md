@@ -4,13 +4,20 @@ Zoe Calianos, Apoorva Gupta, Peyton Nash, Kirthi Rao
 
 # Problem
 
+A person’s taste in movies, television, visual art and music are difficult to pin down. When Amazon Studios’ production failed to garner the audience executives hoped for, Jeff Bezos created a list of twelve characteristics shared by all “iconic” shows. However, it is not difficult to find counter examples for every item. While a formula for good art remains elusive, streaming services of all kinds face a similar issue: how to use their vast stores of data to make personalized recommendations to their users. 
+
+We focus on making music recommendations. The ‘record store’ approach to this problem is learning the listening habits of individual users and identifying artists, albums or songs that are somehow similar. There are several limitations to a machine learning implementation of this approach: understanding why a user likes the music they like, a deep computerized understanding of the music itself and, above all, computational complexity. Instead, machine learning approaches to these problems have used collaborative filtering to make these recommendations, which identifies music recommendations based on all users’ listening habits. 
+
+Our project utilizes Markov chain Monte Carlo to perform Bayesian probabilistic matrix factorization that allows us to predict the number of times a user will listen to an artist. 
+
+
 Personalized Music Recommendation Engine
 
 The goal of this team is to develop a Bayesian solution to current music recommendation systems. We intend to leverage data containing user listening history and artist listening history to build our recommendation engine.
 
 # Previous Work / Approaches
 
-In the past, the more common approaches to building recommendation engines were collaborative filtering & content-based filtering using similarity scores across a user / item vector matrix. Some similarity scores like cosine, jaccard, and pearson are examples. 
+In the past, the more common approaches to building recommendation engines were collaborative filtering and content-based filtering using similarity scores across a user / item vector matrix. Some similarity scores like cosine, jaccard, and pearson are examples. 
 
 We believe a bayesian approach will help us capture low-level latent dimensions in the data while similarity based focusses on surface level proximity between user data. Further, the inclusion of Gaussian priors when thinking about making recommendations allows for more control over regularization by adjusting the variance in priors.
 
@@ -20,7 +27,7 @@ We will be using the publicly available Last.fm dataset, which has over 1 millio
 
 Link -> [dataset](https://grouplens.org/datasets/hetrec-2011/)
 
-# Data Pre-processing & Cleanng
+# Data Pre-processing and Cleaning
 
 # Modeling Approaches Considered
 
