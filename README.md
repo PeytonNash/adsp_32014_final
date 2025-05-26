@@ -16,7 +16,7 @@ We focus on making **music recommendations**. The traditional “record store”
 
 Instead, machine learning approaches often use **collaborative filtering**, which identifies recommendations based on patterns in all users’ listening habits.
 
-Our project utilizes **Markov chain Monte Carlo (MCMC)** to perform **Bayesian Probabilistic Matrix Factorization (BPMF)**, allowing us to predict how many times a user will listen to an artist.
+Our project utilizes **Markov chain Monte Carlo (MCMC)** and **Automatic Differentiation Variational Inference** to perform **Bayesian Probabilistic Matrix Factorization (BPMF)**, allowing us to predict how many times a user is likely to listen to an artist.
 
 ---
 
@@ -33,8 +33,7 @@ Our project utilizes **Markov chain Monte Carlo (MCMC)** to perform **Bayesian P
 ## Data Used
 
 We will be using the publicly available **Last.fm dataset**, which contains over **1 million** user–song listening records.  
-
-- The team will perform necessary data preprocessing to extract the most informative features while managing computational resources.  
+   
 - **Dataset link:**  
   [HetRec 2011 — Last.fm Dataset (GroupLens)](https://grouplens.org/datasets/hetrec-2011/)
 
@@ -42,20 +41,32 @@ We will be using the publicly available **Last.fm dataset**, which contains over
 
 ## Data Preprocessing and Cleaning
 
-*(To be completed)*
+The team tried a variety of data preprocessing methods to extract the most informative features while managing computational resources. Team members created user-item matrices. Some models were based on a subsample of 100 artists and 100 users from a matrix. Others were run on a virtual machine through Google Cloud Platform (GCP) and included the full data. Team members tested raw, log-transformed, and standardized data. The team split the data into training and testing sets for modeling.
 
 ---
 
 ## Modeling Approaches Considered
 
 1. **Bayesian Probabilistic Matrix Factorization (BPMF)**  
-   - Learn latent user and item factors from observed listening counts  
-   - Place Gaussian / Negative Binomial priors on these factors for regularization  
-2. **MCMC / ADVI for Posterior Inference**  
-   - Sample from the posterior distribution of the latent factors  
-   - Generate personalized recommendations based on posterior predictive distributions
+   - Learns latent user and item factors from observed listening counts  
+   - Places Gaussian / Negative Binomial priors on these factors for regularization
+   - Team experimented with:
+          Different likelihood functions (Gaussian, Negative Binomial)
+          Hyperparameter tuning (sigma values, latent dimension size)
+          Hierarchical priors to improve generalization and model structure
+   
+2. **MCMC for Posterior Inference**
+   - MCMC uses No-U-Turn-Sampler (NUTS) for efficient exploration
+   - Samples from the posterior distribution of the latent factors  
+   - Generates uncertainty-aware, personalized recommendations via posterior predictive distributions
+   - Generates samples that reflect the true posterior distribution, but is computationally expensive
+   
+3. **ADVI for Posterior Inference**
+   - Alternative to MCMC that approximates the posterior using optimization
+   - Faster and more scalable, good for large datasets
+   - Uses a multivariate Gaussian to approximate the posterior
 
-Because BPMF operates directly on observed listening data with Bayesian priors, no pretrained models are necessary. We will implement BPMF using **PyMC**.
+Because BPMF operates directly on observed listening data with Bayesian priors, no pretrained models are necessary. We implemented BPMF using **PyMC**.
 
 ---
 
