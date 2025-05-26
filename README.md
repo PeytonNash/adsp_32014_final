@@ -11,10 +11,6 @@ We focus on making music recommendations. The ‘record store’ approach to thi
 Our project utilizes Markov chain Monte Carlo to perform Bayesian probabilistic matrix factorization that allows us to predict the number of times a user will listen to an artist. 
 
 
-Personalized Music Recommendation Engine
-
-The goal of this team is to develop a Bayesian solution to current music recommendation systems. We intend to leverage data containing user listening history and artist listening history to build our recommendation engine.
-
 # Previous Work / Approaches
 
 In the past, the more common approaches to building recommendation engines were collaborative filtering and content-based filtering using similarity scores across a user / item vector matrix. Some similarity scores like cosine, jaccard, and pearson are examples. 
