@@ -42,7 +42,7 @@ We will be using the publicly available **Last.fm dataset**, which contains over
 
 ## Data Preprocessing and Cleaning
 
-*(To be completed—outline your steps for handling missing values, filtering low‑frequency users/items, normalizing listen counts, etc.)*
+*(To be completed)*
 
 ---
 
