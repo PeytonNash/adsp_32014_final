@@ -18,7 +18,7 @@ We believe a bayesian approach will help us capture low-level latent dimensions 
 
 We will be using the publicly available Last.fm dataset, which has over 1 million user/song listening data points. The team will perform necessary data pre-processing to extract the most useful information while keeping computational resource needs in mind.
 
-Link -> [text](https://grouplens.org/datasets/hetrec-2011/)
+Link -> [dataset](https://grouplens.org/datasets/hetrec-2011/)
 
 # Data Pre-processing & Cleanng
 
