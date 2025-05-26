@@ -54,6 +54,7 @@ The team tried a variety of data preprocessing methods to extract the most infor
           Different likelihood functions (Gaussian, Negative Binomial)
           Hyperparameter tuning (sigma values, latent dimension size)
           Hierarchical priors to improve generalization and model structure
+Because BPMF operates directly on observed listening data with Bayesian priors, no pretrained models are necessary. We implemented BPMF using **PyMC**.
    
 2. **MCMC for Posterior Inference**
    - MCMC uses No-U-Turn-Sampler (NUTS) for efficient exploration
@@ -65,8 +66,6 @@ The team tried a variety of data preprocessing methods to extract the most infor
    - Alternative to MCMC that approximates the posterior using optimization
    - Faster and more scalable, good for large datasets
    - Uses a multivariate Gaussian to approximate the posterior
-
-Because BPMF operates directly on observed listening data with Bayesian priors, no pretrained models are necessary. We implemented BPMF using **PyMC**.
 
 ---
 
