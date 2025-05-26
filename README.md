@@ -16,7 +16,7 @@ We focus on making **music recommendations**. The traditional “record store”
 
 Instead, machine learning approaches often use **collaborative filtering**, which identifies recommendations based on patterns in all users’ listening habits.
 
-Our project utilizes **Markov chain Monte Carlo (MCMC)** and **Automatic Differentiation Variational Inference** to perform **Bayesian Probabilistic Matrix Factorization (BPMF)**, allowing us to predict how many times a user is likely to listen to an artist.
+Our project considers **Markov chain Monte Carlo (MCMC)** and **Automatic Differentiation Variational Inference** to perform **Bayesian Probabilistic Matrix Factorization (BPMF)**, allowing us to predict how many times a user is likely to listen to an artist.
 
 ---
 
