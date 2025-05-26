@@ -1,42 +1,87 @@
-# Team Members
+## Team GANGgsters
 
-Zoe Calianos, Apoorva Gupta, Peyton Nash, Kirthi Rao
+**Zoe Calianos**, **Apoorva Gupta**, **Peyton Nash**, **Kirthi Rao**
 
-# Problem
+---
 
-A person’s taste in movies, television, visual art and music are difficult to pin down. When Amazon Studios’ production failed to garner the audience executives hoped for, Jeff Bezos created a list of twelve characteristics shared by all “iconic” shows. However, it is not difficult to find counter examples for every item. While a formula for good art remains elusive, streaming services of all kinds face a similar issue: how to use their vast stores of data to make personalized recommendations to their users. 
+## Problem Statement
 
-We focus on making music recommendations. The ‘record store’ approach to this problem is learning the listening habits of individual users and identifying artists, albums or songs that are somehow similar. There are several limitations to a machine learning implementation of this approach: understanding why a user likes the music they like, a deep computerized understanding of the music itself and, above all, computational complexity. Instead, machine learning approaches to these problems have used collaborative filtering to make these recommendations, which identifies music recommendations based on all users’ listening habits. 
+A person’s taste in movies, television, visual art, and music is difficult to pin down. When Amazon Studios’ production slate failed to garner the audience executives hoped for, Jeff Bezos created a list of twelve characteristics shared by all “iconic” shows. However, it is not difficult to find counterexamples for every item. While a formula for good art remains elusive, streaming services of all kinds face a similar issue: how to use their vast stores of data to make personalized recommendations to their users.
 
-Our project utilizes Markov chain Monte Carlo to perform Bayesian probabilistic matrix factorization that allows us to predict the number of times a user will listen to an artist. 
+We focus on making **music recommendations**. The traditional “record store” approach learns individual users’ listening habits and identifies artists, albums, or songs that are similar. However, this method has several limitations:
 
+- **User preference understanding:** Why does a user like a particular piece of music?  
+- **Content analysis complexity:** Computers struggle to “understand” music at a deep level.  
+- **Computational cost:** Calculating similarities for millions of users and items can be prohibitive.
 
-# Previous Work / Approaches
+Instead, machine learning approaches often use **collaborative filtering**, which identifies recommendations based on patterns in all users’ listening habits.
 
-In the past, the more common approaches to building recommendation engines were collaborative filtering and content-based filtering using similarity scores across a user / item vector matrix. Some similarity scores like cosine, jaccard, and pearson are examples. 
+Our project utilizes **Markov chain Monte Carlo (MCMC)** to perform **Bayesian Probabilistic Matrix Factorization (BPMF)**, allowing us to predict how many times a user will listen to an artist.
 
-We believe a bayesian approach will help us capture low-level latent dimensions in the data while similarity based focusses on surface level proximity between user data. Further, the inclusion of Gaussian priors when thinking about making recommendations allows for more control over regularization by adjusting the variance in priors.
+---
 
-# Data Used
+## Previous Work / Approaches
 
-We will be using the publicly available Last.fm dataset, which has over 1 million user/song listening data points. The team will perform necessary data pre-processing to extract the most useful information while keeping computational resource needs in mind.
+- **Collaborative filtering** and **content-based filtering** using similarity scores over a user–item matrix have been the most common approaches.  
+  - Popular similarity metrics include cosine, Jaccard, and Pearson scores.
+- We believe a **Bayesian approach** will:
+  1. Capture low-level latent dimensions in the data  
+  2. Provide stronger regularization through Gaussian priors
 
-Link -> [dataset](https://grouplens.org/datasets/hetrec-2011/)
+---
 
-# Data Pre-processing and Cleaning
+## Data Used
 
-# Modeling Approaches Considered
+We will be using the publicly available **Last.fm dataset**, which contains over **1 million** user–song listening records.  
 
-the team intends to leverage a Bayesian Probabilistic Matrix Factorization (BPMF) and MCMC approach. The BPMF will be used to learn the histories from a user/song matrix and create our priors from the data. Posterior inference will be carried out using an MCMC approach – we will sample from the posterior distribution to generate personalized recommendations.
+- The team will perform necessary data preprocessing to extract the most informative features while managing computational resources.  
+- **Dataset link:**  
+  [HetRec 2011 — Last.fm Dataset (GroupLens)](https://grouplens.org/datasets/hetrec-2011/)
 
-Because BPMF operates directly on observed listening data with Bayesian priors, no pre-trained models are necessary for this – the team will build the BPMF using PyMC. The priors and observed song consumption data will provide us the needed information
-to make Bayesian inferences.
+---
 
+## Data Preprocessing and Cleaning
 
-# Model Used
+*(To be completed—outline your steps for handling missing values, filtering low‑frequency users/items, normalizing listen counts, etc.)*
 
-# Results
+---
 
-# Future Work
+## Modeling Approaches Considered
 
-Ideally, our training data would include precise timestamps for every listen event, so we could model not just what users like, but when and how their tastes evolve. With time‑stamped histories, we can capture patterns of discovery—e.g. how exposure to one artist in March led to exploring a related genre in June—and ensure that our train/test split respects chronology. In our current “holistic” setup, however, we lose that ordering: we risk recommending a track a user already heard months ago, or—even worse—training on future listens and then “predicting” them in the past. Incorporating temporal dynamics would eliminate these data‑leakage issues, let us model the trajectory of each user’s taste, and ultimately surface genuinely novel, timely recommendations.
+1. **Bayesian Probabilistic Matrix Factorization (BPMF)**  
+   - Learn latent user and item factors from observed listening counts  
+   - Place Gaussian / Negative Binomial priors on these factors for regularization  
+2. **MCMC / ADVI for Posterior Inference**  
+   - Sample from the posterior distribution of the latent factors  
+   - Generate personalized recommendations based on posterior predictive distributions
+
+Because BPMF operates directly on observed listening data with Bayesian priors, no pretrained models are necessary. We will implement BPMF using **PyMC**.
+
+---
+
+## Model Used
+
+*(To be completed)*
+
+---
+
+## Results
+
+*(To be completed)*
+
+---
+
+## Future Work
+
+Ideally, our training data would include **precise timestamps** for every listen event so we could model not only what users like, but **how their tastes evolve over time**. With time‑stamped histories, we would be able to:
+
+- **Capture discovery patterns** (e.g., how listening to Artist A in March led to exploring Genre B in June)  
+- Ensure our train/test split respects **chronology**, avoiding data leakage  
+- Surface genuinely novel, timely recommendations  
+
+In our current “holistic” setup, we lose ordering information, risking:
+
+- Recommending tracks a user already heard months ago  
+- Training on future listens and “predicting” them in the past  
+
+Incorporating **temporal dynamics** will eliminate these issues and improve recommendation quality.
