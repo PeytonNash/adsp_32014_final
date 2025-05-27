@@ -72,7 +72,14 @@ Because BPMF operates directly on observed listening data with Bayesian priors, 
 
 ## Model Used
 
-In the final model, we employ BPMF with 5 latent dimensions (k=5). The model takes the user factors (U) and the item factors (V) as multivariate normal distributions with the shared priors mu_u, mu_v, sigma_u, and sigma_v, and models the predicted rating as the dot product of U and V. The likelihood is set as Gaussian. 
+In the final model, we employ BPMF with 5 latent dimensions (k=5). The model takes the user factors (U) and the item factors (V) as multivariate normal distributions with the shared priors mu_u, mu_v, sigma_u, and sigma_v, and models the predicted rating as the dot product of U and V. The likelihood is set as Gaussian. More detail on the parameters is given below:
+- U is the latent factor matrix for users, drawn from a normal distribution with mean mu_u and stdev sigma_u
+- V is the latent factor matrix from artists, drawn from a normal distribution with mean mu_v and stdev sigma_v
+- mu_u and mu_v are the means for the user and item (artist) latent factors
+- sigma_u and sigma_v are the stdevs for the user and item latent factors, drawn from a half-normal distribution
+- sigma is the standard deviation of observation noise learned from the data
+- R_obs is the likelihood
+
 
 For the inference method, we chose ADVI, which uses stochastic optimization to approximate the model's true posterior distribution by minimizing the difference (KL divergence) between the approximate and true posterior. We ran 20,000 iterations of the optimization process (n=20000) and used a posterior trace of 1,000 (trace=approx.sample(1000)). The trace value generates plausible sets of parameter values from the learned distribution. These samples allow us to quantify the uncertainty in our predictions. 
 
