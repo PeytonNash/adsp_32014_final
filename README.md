@@ -88,7 +88,7 @@ In use cases where the posterior is intractable, Markov chain Monte Carlo are th
 
 $$q^{*}(z) = \text{argmin}_{q(z)\in Q}(\text{KL}(q(z) || p(z|D))$$
 
-where $Q$ is a family of 'simple' distributions of the same dimension as $p(z|D)$. However, straight variational inference requires model-specific derivations of the optimization problem that can be complex and time-consuming to arrive at.
+where $Q$ is a family of 'simple' distributions of the same dimension as $p(z|D)$. However, straight variational inference requires model-specific derivations of the optimization problem that can be complex and time-consuming to calculate.
 
 ### Automatic Differentiation Variational Inference (ADVI)
 
