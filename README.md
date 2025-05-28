@@ -92,7 +92,7 @@ where $Q$ is a family of 'simple' distributions of the same dimension as $p(z|D)
 
 ### Automatic Differentiation Variational Inference (ADVI)
 
-ADVI avoids the model-specific derivations by utilizing automatic differentiation to compute the gradient of the loss function. While it is faster than MCMC methods, ADVI has its own limitations, namely that it assumes zero correlation between the distributions and relaxing this assumption is itself quite expensive computationally.
+ADVI avoids the model-specific derivations by utilizing automatic differentiation to compute the gradient of the loss function. While it is faster than MCMC methods, ADVI has its own limitations, namely that it assumes zero correlation between the distributions and relaxing this assumption is itself computationally expensive.
 
 ---
 
