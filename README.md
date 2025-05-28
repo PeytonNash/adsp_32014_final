@@ -80,8 +80,19 @@ In the final model, we employ BPMF with 5 latent dimensions (k=5). The model tak
 - sigma is the standard deviation of observation noise learned from the data
 - R_obs is the likelihood
 
+We use Automatic Differentiation Variational Inference (ADVI) to approximate the posterior distribution. ADVI uses stochastic optimization to approximate the model's true posterior distribution by minimizing the difference (KL divergence) between the approximate and true posterior. We ran 20,000 iterations of the optimization process `(n=20000)` and used a posterior trace of 1,000 `(trace=approx.sample(1000))`. The trace value generates plausible sets of parameter values from the learned distribution. These samples allow us to quantify the uncertainty in our predictions. 
 
-For the inference method, we chose ADVI, which uses stochastic optimization to approximate the model's true posterior distribution by minimizing the difference (KL divergence) between the approximate and true posterior. We ran 20,000 iterations of the optimization process `(n=20000)` and used a posterior trace of 1,000 `(trace=approx.sample(1000))`. The trace value generates plausible sets of parameter values from the learned distribution. These samples allow us to quantify the uncertainty in our predictions. 
+### Variational Inference
+
+In use cases where the posterior is intractable, Markov chain Monte Carlo are the most accurate way to estimate the posterior: when performed correctly, MCMC methods converge to the actual posterior distribution. However, they are relatively expensive computationally and do not scale well to large data. [ADD COMPLEXITY HERE] Variational inference is a faster and more scalable alternative. Where MCMC methods sample from the posterior, variational inference seeks to approximate the posterior using a surrogate distribution that is easier to sample from. That is, when the posterior $p(z|D)$ is intractable, variational inference seeks to find some $q(z)\approx p(z|D)$ using the KL divergence as the loss metric:
+
+$$q^{*}(z) = \text{argmin}_{q(z)\in Q}(\text{KL}(q(z) || p(z|D))$$
+
+where $Q$ is a family of 'simple' distributions of the same dimension as $p(z|D)$. However, straight variational inference requires model-specific derivations of the optimization problem that can be complex and time-consuming to arrive at.
+
+### Automatic Differentiation Variational Inference (ADVI)
+
+ADVI avoids the model-specific derivations by utilizing automatic differentiation to compute the gradient of the loss function. While it is faster than MCMC methods, ADVI has its own limitations, namely that it assumes zero correlation between the distributions and relaxing this assumption is itself quite expensive computationally.
 
 ---
 
