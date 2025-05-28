@@ -84,7 +84,7 @@ We use Automatic Differentiation Variational Inference (ADVI) to approximate the
 
 ### Variational Inference
 
-In use cases where the posterior is intractable, Markov chain Monte Carlo are the most accurate way to estimate the posterior: when performed correctly, MCMC methods converge to the actual posterior distribution. However, they are relatively expensive computationally and do not scale well to large data. [ADD COMPLEXITY HERE] Variational inference is a faster and more scalable alternative. Where MCMC methods sample from the posterior, variational inference seeks to approximate the posterior using a surrogate distribution that is easier to sample from. That is, when the posterior $p(z|D)$ is intractable, variational inference seeks to find some $q(z)\approx p(z|D)$ using the KL divergence as the loss metric:
+In use cases where the posterior is intractable, Markov chain Monte Carlo are the most accurate way to estimate the posterior: when performed correctly, MCMC methods converge to the actual posterior distribution. However, they are relatively expensive computationally and do not scale well to large data. Variational inference is a faster and more scalable alternative. Where MCMC methods sample from the posterior, variational inference seeks to approximate the posterior using a surrogate distribution that is easier to sample from. That is, when the posterior $p(z|D)$ is intractable, variational inference seeks to find some $q(z)\approx p(z|D)$ using the KL divergence as the loss metric:
 
 $$q^{*}(z) = \text{argmin}_{q(z)\in Q}(\text{KL}(q(z) || p(z|D))$$
 
