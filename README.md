@@ -119,8 +119,6 @@ Artists that only appear for a handful of users will have poorly estimated laten
 
 - Since user overlap is low (few shared artists among users), the model struggles to generalize user preferences.
 
-- When the overlap is high, popular artists may dominate recommendations.
-
 
 ## Future Work
 
