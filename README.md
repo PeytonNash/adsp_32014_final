@@ -89,7 +89,7 @@ For the inference method, we chose ADVI, which uses stochastic optimization to a
 
 Our error metrics are in logged units because we log-transformed play counts in pre-processing. The Root Mean Squared Error (RMSE) of our model was 0.92. This indicates that our predictions differ from the true log play count by 0.92. The Mean Squared Error (MSE) was 0.69, which reflects the absolute deviation in log units between the true values and predicted values. The R2 of our model was 0.62, which tells us that 62% of the variance in the test set is explained by the model. We consider these results strong given the size and complexity of our dataset. 
 
-![alt text](image-1.png)
+![alt text](image.png)
 
 
 ---
